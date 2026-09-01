@@ -38,7 +38,13 @@ I present to you this little tool to create **"Symbolic GTAs"**! <br>
 
 **"GTA Symlink Generator"** is a small ***.bat"*** that allows us to create a GTA installation, using **"Symlinks"**. What this command does is ask us for the source path (GTA Original without mods), and the path where we are going to install our **"GTA Symlink"**. <br>
 
-NOTE: Not only can we create *"Symlinks"* for complete installations, we can also create "Symlinks" to install heavy mods (RoSA Evolved, Proper Fixes, Original Radio Extended, etc.)! <br> <br>
+**NOTE:** Not only can we create *"Symlinks"* for complete installations, we can also create "Symlinks" to install heavy mods (RoSA Evolved, Proper Fixes, Original Radio Extended, etc.)! <br> <br>
+
+### SUPPORTED GAMES:
+- **Grand Theft Auto III PC (1.0)**
+- **Grand Theft Auto: Vice City PC (1.0)**
+- **Grand Theft Auto: San Andreas PC (1.0)**
+<br>
 
 
 ### Features
