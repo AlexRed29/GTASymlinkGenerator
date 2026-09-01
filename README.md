@@ -36,7 +36,7 @@ With Symbolic Links we can save a lot of storage space! <br> <br> <br>
 # GTA Symlink Generator
 I present to you this little tool to create **"Symbolic GTAs"**! <br>
 
-**"GTA Symlink Generator"** is a small ***.bat"*** that allows us to create a GTA installation, using **"Symlinks"**. What this command does is ask us for the source path (GTA Original without mods), and the path where we are going to install our **"GTA Symlink"**. <br>
+**"GTA Symlink Generator"** is a small Tool that allows us to create a GTA installation, using **"Symlinks"**. What this command does is ask us for the **"Source path (GTA Original without mods)"**, and the **"Destination path"** where we are going to install our **"GTA Symlink"**. <br>
 
 **NOTE:** Not only can we create *"Symlinks"* for complete installations, we can also create "Symlinks" to install heavy mods (RoSA Evolved, Proper Fixes, Original Radio Extended, etc.)! <br> <br>
 
@@ -51,8 +51,7 @@ I present to you this little tool to create **"Symbolic GTAs"**! <br>
 - Quite simple interface (Windows **CMD**).
 - For security reasons, it asks us if it will be for a **Total Conversion Mod**.
 - Confirmation of required folders and files (***"Anim", "Audio", "Models"***, etc.).
-- Portable (No need to install anything).
-- Safe and without so much "unnecessary code".
+- Portable (No need to install anything!).
 <br> <br> <br>
 
 # INSTALLATION
