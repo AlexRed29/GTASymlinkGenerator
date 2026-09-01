@@ -18,11 +18,25 @@ jobs:
         uses: microsoft/setup-msbuild@v2
 
       - name: Build Release Win32
+        shell: pwsh
         run: |
-          msbuild "GTA Symlink Generator.vcxproj" /p:Configuration=Release /p:Platform=Win32 /v:detailed
+          msbuild "GTA Symlink Generator.vcxproj" /p:Configuration=Release /p:Platform=Win32 /v:diagnostic *> msbuild.log
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "MSBuild failed with exit code $LASTEXITCODE"
+            Get-Content msbuild.log
+            exit $LASTEXITCODE
+          }
+
+      - name: Upload MSBuild log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MSBuild-Log
+          path: msbuild.log
 
       - name: Upload executable
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: GTA-Symlink-Generator
-          path: 'Release/GTA Symlink Generator.exe'
+          path: "Release/GTA Symlink Generator.exe"
