@@ -1,28 +1,27 @@
 name: Build GTA Symlink Generator
 
 on:
-push:
-branches:
-- main
-workflow_dispatch:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
-build:
-runs-on: windows-latest
+  build:
+    runs-on: windows-latest
 
-steps:
-  - name: Checkout source code
-    uses: actions/checkout@v4
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
 
-  - name: Setup MSBuild
-    uses: microsoft/setup-msbuild@v2
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
 
-  - name: Build Release Win32
-    shell: cmd
-    run: msbuild "GTA Symlink Generator.vcxproj" /p:Configuration=Release /p:Platform=Win32
+      - name: Build Release Win32
+        run: 'msbuild "GTA Symlink Generator.vcxproj" /p:Configuration=Release /p:Platform=Win32'
 
-  - name: Upload executable
-    uses: actions/upload-artifact@v4
-    with:
-      name: GTA-Symlink-Generator
-      path: "Release/GTA Symlink Generator.exe"
+      - name: Upload executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: GTA-Symlink-Generator
+          path: 'Release/GTA Symlink Generator.exe'
