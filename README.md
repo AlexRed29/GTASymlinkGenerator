@@ -1,7 +1,9 @@
 # GTA Symlink Generator
 ###### Created by: AlexRed29X
-###### Updated: September 1st 2026
-<img width="720" height="560" alt="Symlink-generator" src="https://github.com/user-attachments/assets/65be168b-2af0-4161-9d94-93e6c02c8c51" />
+###### Updated to: September 2nd 2026
+
+<img width="720" height="560" alt="GTA-Symlink-Generator-logo" src="https://github.com/user-attachments/assets/3aed5ee0-9a55-49db-94a3-b367a3cc12e2" />
+
 
 ### Welcome to the GTA "Symlink Generator" repository!
 
@@ -105,7 +107,8 @@ For **Total Conversion** mods, **YES OR YES** we are going to have to copy and p
 -Liberty Extended
 -Vice Extended
 
-And fortunately many mods were officially/unofficially updated to be installed by Modloader! These mods are known as **"Repack"** or **"Modloader Support"**! <br>
+And fortunately many mods were officially/unofficially updated to be installed by Modloader! <br>
+These mods are known as **"Repack"** or **"Modloader Support"**! <br>
 
 Examples of these mods are: <br>
 - Things To Do In San Andreas (TTDISA OV)
