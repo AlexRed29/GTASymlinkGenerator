@@ -47,16 +47,16 @@ This means saving disk space! <br>
 
 **NOTE:** Not only can we create *"Symlinks"* for complete installations, we can also create **"Symlinks"** to install heavy mods (Such as ***RoSA Evolved, Proper Fixes, Original Radio Extended, etc.***)! <br> 
 
-<img width="830" height="441" alt="mod-symlink" src="https://github.com/user-attachments/assets/50a81dce-26b8-42da-8fdb-3bb8b0fde18d" /> <br> <br>
+<img width="830" height="441" alt="mod-symlink" src="https://github.com/user-attachments/assets/50a81dce-26b8-42da-8fdb-3bb8b0fde18d" /> <br>
 
-### SUPPORTED GAMES:
+## SUPPORTED GAMES:
 - **Grand Theft Auto III PC (1.0)**
 - **Grand Theft Auto: Vice City PC (1.0)**
 - **Grand Theft Auto: San Andreas PC (1.0)**
+
 <br>
 
-
-### Features
+## Features
 - Quite simple interface (Windows **CMD**).
 - For security reasons, it asks us if it will be for a **Total Conversion Mod**.
 - Confirmation of required folders and files (***"Anim", "Audio", "Models"***, etc.).
@@ -71,11 +71,20 @@ This means saving disk space! <br>
 
 
 ## STEPS TO FOLLOW
-1. Select whether we will create a ***"GTA Symlink"*** or a *"Symlink"* for a heavy Mod **(Ex: RoSA Evolved)**.
-2. Paste the **SOURCE Path (Original game without mods)**.
-3. Paste the **DESTINATION Path (Where we are going to install our "GTA Symlink")**
-4. Press the corresponding buttons on the keyboard
-5. Perfect! You now have your **GTA "Symlink" / Mod "Symlink"**! <br> <br> <br>
+Select whether we will create a ***"GTA Symlink"*** or a ***"Mod Symlink"*** for a heavy mod **(Ex: RoSA Evolved)**. <br>
+
+### CREATING A "GTA SYMLINK" 
+1. Paste the **SOURCE Path (Original game without mods)**.
+2. Paste the **DESTINATION Path (Where we are going to install our "GTA Symlink")**
+3. Press the corresponding buttons on the keyboard
+4. Perfect! You now have your **GTA "Symlink"**! <br> <br>
+
+### CREATING A "MOD SYMLINK"
+1. Paste the **SOURCE Path (Original Mod Folder)**.
+2. Paste the **DESTINATION Path (Your Modloader folder location")**
+3. Press the corresponding buttons on the keyboard
+4. Perfect! You now have your **"Mod Symlink"**! <br> <br> <br>
+
 
 # IMPORTANT! VERY VERY IMPORTANT!
 ### DO NOT make a "GTA Symlink" for Total Conversion mods!
@@ -86,7 +95,7 @@ This means saving disk space! <br>
 - GTA Long Night
 - GTA San Andreas Stories (SAS)
 - GTA Carcer City
--Zombie Andreas
+- Zombie Andreas
 - Project Eagle (Stars & Stripes)
 - GTA Forelli Redemption <br> <br>
 
@@ -101,16 +110,16 @@ For **Total Conversion** mods, **YES OR YES** we are going to have to copy and p
 **Of course it does!** For our good luck we can install some "Total Conversion" mods on a "GTA Symlink". <br>
 
 **Mainly they are mods that do not modify any original file, or that only change the ***"Main.scm"***:** <br>
--San Andreas Multiplayer (SA-MP)
+- San Andreas Multiplayer (SA-MP)
 - Tenpenny Stories (Modloader)
 - Great Theft Car (Modloader)
--Liberty Extended
--Vice Extended
+- Liberty Extended
+- Vice Extended
 
-And fortunately many mods were officially/unofficially updated to be installed by Modloader! <br>
+<br> And fortunately many mods were officially/unofficially updated to be installed by Modloader! <br>
 These mods are known as **"Repack"** or **"Modloader Support"**! <br>
 
-Examples of these mods are: <br>
+**Examples of these mods are:** <br>
 - Things To Do In San Andreas (TTDISA OV)
 - GTA Gostown Paradise (Modloader REPACK)
 - GTA Alien City (Modloader Support)
