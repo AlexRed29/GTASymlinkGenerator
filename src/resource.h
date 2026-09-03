@@ -1,5 +1,5 @@
 //{{NO_DEPENDENCIES}}
-// Archivo de inclusión generado de Microsoft Visual C++.
+// Archivo de inclusiÃ³n generado de Microsoft Visual C++.
 // Usado por GTA Symlink Generator.rc
 //
 #define IDI_ICON1                       102
