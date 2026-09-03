@@ -64,10 +64,10 @@ This means saving disk space! <br>
 <br> <br> <br>
 
 # INSTALLATION
-#### 1. Let's [**"Releases"**](https://github.com/AlexRed29/GTA-Symlink-Generator/releases/tag/GTA-Symlink-Generator-v1).
-#### 2. Let's download the ***".zip"***.
-#### 3. We are going to extract the ".zip" with 7Zip or WinRAR*.
-#### 4. Open the program and the steps to create our **"GTA Symlink"**. <br> <br> <br>
+### 1. Let's [**"Releases"**](https://github.com/AlexRed29/GTASymlinkGenerator/releases)
+### 2. Let's download the ***".zip"***.
+### 3. We are going to extract the ".zip" with 7Zip or WinRAR*.
+### 4. Open the program and the steps to create our **"GTA Symlink"**. <br> <br> <br>
 
 
 ## STEPS TO FOLLOW
