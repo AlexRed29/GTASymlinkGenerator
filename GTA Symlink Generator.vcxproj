@@ -140,7 +140,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GTA Symlink Generator.cpp" />
+    <ClCompile Include="src\GTA Symlink Generator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\GTA-Symlink-icon-x256.ico" />
