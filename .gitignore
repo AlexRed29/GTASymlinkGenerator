@@ -1,0 +1,18 @@
+# --- Carpetas temporales y de compilación de Visual Studio ---
+.vs/
+Debug/
+Release/
+x64/
+x86/
+out/
+build/
+
+# --- Archivos de configuración de usuario innecesarios ---
+*.vcxproj.user
+*.vcxproj.filters
+*.suo
+*.user
+
+# --- Archivos del sistema operativo ---
+Thumbs.db
+.DS_Store
