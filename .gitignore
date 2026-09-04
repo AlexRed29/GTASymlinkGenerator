@@ -1,18 +1,62 @@
-# --- Carpetas temporales y de compilación de Visual Studio ---
+# Visual Studio
 .vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Compilación
 Debug/
 Release/
 x64/
 x86/
-out/
-build/
+ARM/
+ARM64/
 
-# --- Archivos de configuración de usuario innecesarios ---
-*.vcxproj.user
-*.vcxproj.filters
-*.suo
-*.user
+# Archivos intermedios de Visual Studio / MSBuild
+*.obj
+*.pdb
+*.ilk
+*.idb
+*.tlog
+*.lastbuildstate
+*.log
+*.ipch
+*.iobj
+*.ipdb
 
-# --- Archivos del sistema operativo ---
-Thumbs.db
+# Archivos generados por MSBuild
+*.gch
+*.pch
+*.res
+*.sbr
+*.bsc
+
+# Carpetas de compilación comunes
+[Bb]in/
+[Oo]bj/
+
+# CMake (por si se utiliza posteriormente)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+
+# Visual Studio Code
+.vscode/
+
+# Sistema operativo
 .DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos temporales
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# Archivos de depuración
+*.dmp
