@@ -9,8 +9,7 @@
 
 If you are here, I assume you have seen the video to create a GTA installation, using **Symbolic Links**.
 
-**Have you not seen the video?** <br>
-**Click here!** <br> <br>
+### **Have you not seen the video?** <br> [**Click here!**](https://youtu.be/zpb7t7_fB4E) <br> <br>
 
 
 ## What is a "Symlink"?
