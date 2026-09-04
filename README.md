@@ -1,6 +1,6 @@
 # GTA Symlink Generator
 ###### Created by: AlexRed29X
-###### Updated to: September 2nd 2026
+###### Updated to: September 4th 2026
 
 <img width="720" height="560" alt="GTA-Symlink-Generator-logo" src="https://github.com/user-attachments/assets/3aed5ee0-9a55-49db-94a3-b367a3cc12e2" />
 
