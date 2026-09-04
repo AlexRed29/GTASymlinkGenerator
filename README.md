@@ -25,11 +25,22 @@ A portal that is constantly sending data from **"Point A"** to ***"Point B"**, *
 
 They are also used to **save a lot of time**. If our HDD/SSD is slow at copying and pasting files, we can use **"Symlinks"** to instantly "copy" the same folder with files to another location with just a few commands. <br> <br>
 
+### **For Example:** <br>
+You have your **GTA SA (Vanilla)** installation, and its **"Audio"** folder is *3.23 GB*. <br>
+
+If you want to create a separate installation of the same **GTA SA (a custom version for mods)**, you can create a *"Symlink" (0 KB)* of the **"Audio"** folder that points to that original **"Audio"** folder *(3.23 GB)* for your new GTA. <br>
+
+The OS (Windows/Linux) will think the "Symlink" is the original "Audio" folder! <br> 
+
+### 3.23 GB (*Original* "Audio" Folder) = 0 KB ("Audio" folder *Symlink*) <br> <br> <br>
+
 
 ### How can we use them in "Grand Theft Auto" (III/Vice City/San Andreas)?
 If you are someone who is used to having many installations of your game (Be it for mods), you are surely tired of creating many copies of your same game in another location that consume a lot of space on your HDD/SSD. <br>
 
-You literally Copy and Paste the same files **(Anim, Audio, Models)** in another location, even if you are not going to modify them. <br>
+You literally Copy and Paste the same files **(Anim, Audio, Models)** in another location, even if you are not going to modify them (Thanks to the existence of Modloader, it is no longer necessary to modify the original files). <br>
+
+And if you have a very slow HDD or SSD, copying and pasting the GTA files to create another installation would take a long time. <br>
 
 With Symbolic Links we can save a lot of storage space! <br> <br> <br>
 
@@ -43,6 +54,9 @@ There is no need to copy/paste the same GTA San Andreas (4.68 GB) to another loc
 This means saving disk space! <br>
 
 <img width="830" height="441" alt="symlink-gta" src="https://github.com/user-attachments/assets/f9f8ae09-f93c-4551-9168-01664f4268bb" /> <br>
+
+
+
 
 **NOTE:** Not only can we create *"Symlinks"* for complete installations, we can also create **"Symlinks"** to install heavy mods (Such as ***RoSA Evolved, Proper Fixes, Original Radio Extended, etc.***)! <br> 
 
