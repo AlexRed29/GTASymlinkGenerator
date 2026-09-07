@@ -12,8 +12,8 @@ If you are here, I assume you have seen the video to create a GTA installation, 
 ### **Have you not seen the video?** <br> [**Click here!**](https://youtu.be/zpb7t7_fB4E) <br> <br>
 
 
-## What is a "Symlink"?
-**"Symlinks"**, in a nutshell, are like **"Advanced Shortcuts".** <br>
+## What is a Symbolic Link ("Symlink")?
+**"Symbolic Links"** or **"Symlinks"**, in a nutshell, are like **"Advanced Shortcuts".** <br>
 
 But, unlike conventional Shortcuts, the **Operating System (Windows/Linux)** will perceive it as if it were the original file or folder, although in reality it is just a link that points to them (Symbolize). <br>
 
@@ -46,9 +46,9 @@ With Symbolic Links we can save a lot of storage space! <br> <br> <br>
 
 
 # GTA Symlink Generator
-I present to you this little tool to create **"Symbolic GTAs"**! <br>
+I present to you this little tool to create a **GTA "Symlink"**! <br>
 
-**"GTA Symlink Generator"** is a small Tool that allows us to create a GTA installation, using **"Symlinks"**. What this command does is ask us for the **"Source path (GTA Original without mods)"**, and the **"Destination path"** where we are going to install our **"GTA Symlink"**. <br> 
+**"GTA Symlink Generator"** is a small Tool that allows us to create a GTA installation, using **"Symlinks"**. What this command does is ask us for the **"SOURCE path (GTA Vanilla / Without Mods)"**, and the **"DESTINATION path"** where we are going to install our **"GTA Symlink"**. <br> 
 
 There is no need to copy/paste the same GTA San Andreas (4.68 GB) to another location; the game will now be a "GTA SA Symlink" (35.5 MB)! <br>
 This means saving disk space! <br>
