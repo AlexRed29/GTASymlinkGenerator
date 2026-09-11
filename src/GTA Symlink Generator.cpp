@@ -1,19 +1,100 @@
-// GTA Symlink Generator.cpp 
+// GTA Symlink Generator.cpp
 // Created by: AlexRed29X
 //
-// Last modification: September 1st 2026
+// Ultima Modificacion: 11 Septiembre 2026
 //
 
-// GTA Symlink Generator.cpp
 
 #include <iostream>
 #include <limits>
 #include <string>
 #include <filesystem>
 #include <vector>
+#include <fstream>
+#include <unordered_map>
 
 #define NOMINMAX
 #include <Windows.h>
+#include "resource.h"
+#include <sstream>
+
+
+// ========================================
+// TRANSLATION
+// ========================================
+
+std::unordered_map<std::string, std::string> language;
+
+bool loadLanguage(const std::string& filename)
+{
+    HRSRC resource = nullptr;
+
+    if (filename == "languages/English.ini")
+        resource = FindResource(nullptr, MAKEINTRESOURCE(ENGLISH_INI), RT_RCDATA);
+    else if (filename == "languages/Spanish.ini")
+        resource = FindResource(nullptr, MAKEINTRESOURCE(SPANISH_INI), RT_RCDATA);
+    else if (filename == "languages/portuguese.ini")
+        resource = FindResource(nullptr, MAKEINTRESOURCE(PORTUGUESE_INI), RT_RCDATA);
+
+    if (!resource)
+        return false;
+
+    HGLOBAL data = LoadResource(nullptr, resource);
+
+    if (!data)
+        return false;
+
+    DWORD size = SizeofResource(nullptr, resource);
+
+    const char* content = static_cast<const char*>(LockResource(data));
+
+    if (!content)
+        return false;
+
+    std::string text(content, size);
+
+    std::istringstream file(text);
+
+    std::string line;
+
+    while (std::getline(file, line))
+    {
+        // Ignore empty lines
+        if (line.empty())
+            continue;
+
+        // Ignore comments
+        if (line[0] == ';')
+            continue;
+
+        size_t separator = line.find('=');
+
+        if (separator == std::string::npos)
+            continue;
+
+        std::string key = line.substr(0, separator);
+        std::string value = line.substr(separator + 1);
+
+        language[key] = value;
+    }
+
+    return true;
+}
+
+
+std::string getText(const std::string& key)
+{
+    auto it = language.find(key);
+
+    if (it != language.end())
+    {
+        return it->second;
+    }
+
+    return "[" + key + "]";
+}
+
+
 
 
 // ========================================
@@ -132,7 +213,7 @@ bool copyElement(
 
 
 // ========================================
-// CREATE GAME SYMLINK
+// TOTAL CONVERSION
 // ========================================
 
 void createGameSymlink(
@@ -151,15 +232,15 @@ void createGameSymlink(
     std::cout << "          " << gameName << "\n";
     std::cout << "========================================\n\n";
 
-    std::cout << "ENG: Will this installation be for a 'TOTAL CONVERSION MOD'?\n";
-    std::cout << "ESP: Esta instalacion sera para un 'MOD DE CONVERSION TOTAL'?\n\n\n";
-    std::cout << "EXAMPLES:\n";
+    std::cout << "\n" << getText("TOTAL_CONVERSION_QUESTION") << "\n\n";
+    std::cout << getText("EXAMPLES") << "\n";
     std::cout << "III: GTA Frosted Winter, Forelli Redemption\n";
     std::cout << "Vice City: GTA Long Night, Vice City Extended Features\n";
-    std::cout << "San Andreas: GTA Carcer City, GTA Underground, Zombie Andreas, Project Eagle\n\n";
+    std::cout << "San Andreas: GTA Carcer City, GTA Underground, Zombie Andreas, Project Eagle\n\n\n";
 
-    std::cout << "[N] No\n";
-    std::cout << "[Y] Yes\n\n";
+
+    std::cout << "[Y] " << getText("YES") << "\n";
+    std::cout << "[N] " << getText("NO") << "\n\n";
 
     std::cout << "Select an option: ";
     std::cin >> totalConversion;
@@ -169,26 +250,24 @@ void createGameSymlink(
         totalConversion == 'y')
     {
         clearScreen();
-        std::cout << "\n========================================\n";
-        std::cout << "              WARNING! / ADVERTENCIA! \n";
+
+        std::cout << "\n========================================\n\n";
+        std::cout << getText("WARNING") << "\n";
+        std::cout << getText("FULLGAME") << "\n\n";
         std::cout << "========================================\n\n";
 
-        std::cout << "ENG: Make a full copy of the game! \n";
-        std::cout << "ESP: Haz una copia completa del juego! \n\n";
+        std::cout << getText("NO_SYMLINK") << "\n\n";
+        std::cout << getText("IF_SYMLINK") << "\n";
 
-        std::cout << "DON'T USE SYMLINKS with the\n";
-        std::cout << "Total Conversion mods!\n\n";
-
-        std::cout << "NO HAGAS SYMLINKS Con los\n";
-        std::cout << "Mods de Conversion Total!\n\n\n";
-
-        std::cout << "FILES THAT MODIFY THE 'TOTAL CONVERSION MODS':\n";
-        std::cout << "ARCHIVOS QUE MODIFICAN LOS 'MODS DE CONVERSION TOTAL':\n\n";
         std::cout << "- Anim\n";
         std::cout << "- Audio\n";
         std::cout << "- Data\n";
         std::cout << "- Models\n";
         std::cout << "- Text\n\n\n";
+
+        std::cout << getText("BAD_SYMLINK") << "\n\n";
+
+
 
         std::cout << "Press ENTER to return...";
 
@@ -206,6 +285,7 @@ void createGameSymlink(
     if (totalConversion != 'N' &&
         totalConversion != 'n')
     {
+
         std::cout << "\nInvalid option.\n";
         std::cout << "Please select N or Y.\n\n";
 
@@ -229,19 +309,22 @@ void createGameSymlink(
 
 
     // ========================================
-    // PATHS
+    //
+    // CREATE SYMLINK GAME
+    //
     // ========================================
 
+    clearScreen();
+
     std::cout << "\n========================================\n";
-    std::cout << "             SYMLINK PATHS\n";
+    std::cout << getText("SYMLINK_PATHS") << "\n";
+    std::cout << "          " << gameName << "\n";
     std::cout << "========================================\n\n";
 
-    std::cout << "SOURCE path (GTA WITHOUT MODS):\n";
-    std::cout << "Ruta ORIGEN (GTA SIN MODS):\n\n> ";
+    std::cout << getText("SOURCE_PATH") << "\n";
     std::getline(std::cin, sourceText);
 
-    std::cout << "\n\nDESTINATION PATH: (Where we are going to install our 'GTA Symlink')\n";
-    std::cout << "RUTA DESTINO: (En donde vamos a instalar nuestro 'GTA Symlink')\n\n> ";
+    std::cout << "\n" << getText("DESTINATION_PATH") << "\n";
     std::getline(std::cin, destinationText);
 
 
@@ -253,9 +336,9 @@ void createGameSymlink(
     // CHECK PATHS
     // ========================================
 
-    std::cout << "\n========================================\n";
-    std::cout << "             CHECKING PATHS\n";
-    std::cout << "========================================\n\n";
+    std::cout << "\n\n========================================\n";
+    std::cout << "\n" << getText("CHECKING_PATHS") << "\n";
+    std::cout << "\n========================================\n\n";
 
 
     if (!std::filesystem::exists(source))
@@ -287,8 +370,7 @@ void createGameSymlink(
     {
         std::cout << "Destination: ERROR - Path does not exist.\n\n";
 
-        std::cout << "You must create the 'Destination Folder' first.\n";
-        std::cout << "Debes crear 'la Carpeta de Destino' primero.\n\n\n";
+        std::cout << "You must create the destination folder first.\n";
 
         std::cout << "\nPress ENTER to continue...";
         std::cin.get();
@@ -318,9 +400,9 @@ void createGameSymlink(
     bool allElementsExist = true;
 
 
-    std::cout << "\n========================================\n";
-    std::cout << "          REQUIRED ELEMENTS\n";
-    std::cout << "========================================\n\n";
+    std::cout << "\n\n========================================\n";
+    std::cout << "\n" << getText("REQUIRED_ELEMENTS") << "\n";
+    std::cout << "\n========================================\n\n";
 
 
     std::cout << "SYMLINKS:\n\n";
@@ -369,12 +451,13 @@ void createGameSymlink(
 
     if (!allElementsExist)
     {
-        std::cout << "\n========================================\n";
-        std::cout << "        WARNING / ADVERTENCIA \n";
+        std::cout << "\n\n========================================\n";
+        std::cout << "              WARNING\n";
         std::cout << "\n========================================\n\n";
 
-        std::cout << "Required files or folders are MISSING.\n";
-        std::cout << "FALTAN archivos o carpetas requeridas.\n\n";
+        std::cout << "Required files or folders are missing.\n\n";
+
+        std::cout << "If they are ''not-so-important'' folders (like 'MP3' for GTA III/Vice City), create them manually.\n\n";
 
         std::cout << "The "
             << gameName
@@ -389,9 +472,7 @@ void createGameSymlink(
     }
 
 
-    std::cout << "\nAll required elements were found!\n";
-    std::cout << "Se encontraron todos los elementos requeridos!\n\n";
-
+    std::cout << "\nAll required elements were found.\n";
 
 
     // ========================================
@@ -401,9 +482,9 @@ void createGameSymlink(
     bool allDestinationsAvailable = true;
 
 
-    std::cout << "\n========================================\n";
-    std::cout << "          CHECKING DESTINATION\n";
-    std::cout << "========================================\n\n";
+    std::cout << "\n\n========================================\n";
+    std::cout << "\n" << getText("CHECKING_DESTINATION") << "\n";
+    std::cout << "\n========================================\n\n";
 
 
     std::cout << "SYMLINKS:\n\n";
@@ -454,7 +535,7 @@ void createGameSymlink(
     {
         std::cout << "\n========================================\n";
         std::cout << "              WARNING\n";
-        std::cout << "========================================\n\n";
+        std::cout << "\n========================================\n\n";
 
         std::cout << "One or more destinations already exist.\n\n";
 
@@ -477,9 +558,9 @@ void createGameSymlink(
     char confirmation;
 
 
-    std::cout << "\n========================================\n";
-    std::cout << "          FINAL CONFIRMATION\n";
-    std::cout << "========================================\n\n";
+    std::cout << "\n\n========================================\n\n";
+    std::cout << getText("FINAL_CONFIRMATION") << "\n";
+    std::cout << "\n========================================\n\n";
 
     std::cout << "Symlinks to create: "
         << symlinks.size()
@@ -495,10 +576,10 @@ void createGameSymlink(
     std::cout << "Destination:\n";
     std::cout << destination.string() << "\n\n";
 
-    std::cout << "[Y] Yes\n";
-    std::cout << "[N] No\n\n";
+    std::cout << "[Y] " << getText("YES") << "\n";
+    std::cout << "[N] " << getText("NO") << "\n\n";
 
-    std::cout << "Continue? ";
+    std::cout << getText("SELECT_OPTION");
     std::cin >> confirmation;
 
 
@@ -526,7 +607,6 @@ void createGameSymlink(
 
     std::cout << "\nConfirmed.\n";
     std::cout << "Creating Symlinks...\n\n";
-    std::cout << "Creando Symlinks...\n\n";
 
 
     int symlinksCreated = 0;
@@ -622,8 +702,8 @@ void createGameSymlink(
     // ========================================
 
     std::cout << "\n========================================\n";
-    std::cout << "              RESULT\n";
-    std::cout << "========================================\n\n";
+    std::cout << "\n" << getText("RESULT") << "\n";
+    std::cout << "\n========================================\n\n";
 
     std::cout << "Symlinks created: "
         << symlinksCreated
@@ -641,9 +721,9 @@ void createGameSymlink(
         << gameName
         << " processed successfully.\n\n\n";
 
-    std::cout << "\n========================================\n";
-    std::cout << "              MISSION PASSED!\n";
-    std::cout << "                   RESPECT+\n";
+    std::cout << "\n========================================\n\n";
+    std::cout << getText("MISSION_PASSED") << "\n";
+    std::cout << getText("RESPECT_PLUS") << "\n\n";
     std::cout << "========================================\n\n\n";
 
 
@@ -681,19 +761,18 @@ void createModSymlink()
     std::cout << "             MOD SYMLINK\n";
     std::cout << "========================================\n\n";
 
-    std::cout << "ENG: The original mod folder MUST remain in its location.\n";
-    std::cout << "ESP: La carpeta original del mod DEBE permanecer en su ubicacion\n\n";
+    std::cout << getText("MOD_SYMLINK_INFO_1") << "\n";
+    std::cout << getText("MOD_SYMLINK_INFO_2") << "\n\n";
 
-    std::cout << "ENG: A Symlink will be created inside your Modloader folder.\n";
-    std::cout << "ESP: Se creara un 'Symlink' dentro de tu carpeta de Modloader.\n\n\n";
+    std::cout << getText("MOD_SYMLINK_INFO_3") << "\n";
+    std::cout << getText("MOD_SYMLINK_INFO_4") << "\n\n";
 
 
     // ========================================
     // SOURCE
     // ========================================
 
-    std::cout << "MOD SOURCE path (Mod folder):\n";
-    std::cout << "Ruta ORIGEN del mod (Carpeta del mod):\n\n>";
+    std::cout << getText("MOD_SOURCE_PATH") << "\n> ";
     std::getline(std::cin, sourceText);
 
 
@@ -701,8 +780,7 @@ void createModSymlink()
     // MODLOADER
     // ========================================
 
-    std::cout << "\n\nDESTINATION path (MODLOADER Folder):\n";
-    std::cout << "Ruta DESTINO (Carpeta MODLOADER):\n\n>";
+    std::cout << "\n" << getText("MOD_DESTINATION_PATH") << "\n> ";
     std::getline(std::cin, modloaderText);
 
 
@@ -715,14 +793,13 @@ void createModSymlink()
     // ========================================
 
     std::cout << "\n========================================\n";
-    std::cout << "             CHECKING PATHS\n";
+    std::cout << "\n" << getText("CHECKING_PATHS") << "\n\n";
     std::cout << "========================================\n\n";
 
 
     if (!std::filesystem::exists(source))
     {
         std::cout << "Source: ERROR - Path does not exist.\n";
-        std::cout << "Origen: ERROR - La ruta no existe.\n";
 
         std::cout << "\nPress ENTER to continue...";
         std::cin.get();
@@ -734,7 +811,6 @@ void createModSymlink()
     if (!std::filesystem::is_directory(source))
     {
         std::cout << "Source: ERROR - Path is not a folder.\n";
-        std::cout << "Origen: ERROR - La ruta no es una carpeta.\n";
 
         std::cout << "\nPress ENTER to continue...";
         std::cin.get();
@@ -743,8 +819,7 @@ void createModSymlink()
     }
 
 
-    std::cout << "Source: OK - Folder exists!\n";
-    std::cout << "Origen: OK - La carpeta existe!\n";
+    std::cout << "Source: OK - Folder exists.\n";
 
 
     if (!std::filesystem::exists(modloader))
@@ -802,13 +877,13 @@ void createModSymlink()
     // ========================================
 
     std::cout << "\n========================================\n";
-    std::cout << "             MOD INFORMATION\n";
+    std::cout << getText("MOD_INFORMATION") << "\n\n";
     std::cout << "========================================\n\n";
 
-    std::cout << "Mod name:\n";
+    std::cout << getText("MOD_NAME") << modName << "\n";
     std::cout << modName << "\n\n";
 
-    std::cout << "Source:\n";
+    std::cout << getText("MOD_SOURCE") << sourceText << "\n";
     std::cout << source.string() << "\n\n";
 
     std::cout << "Modloader:\n";
@@ -823,7 +898,7 @@ void createModSymlink()
     // ========================================
 
     std::cout << "\n========================================\n";
-    std::cout << "        CHECKING FINAL DESTINATION\n";
+    std::cout << getText("CHECKING_DESTINATION") << "\n";
     std::cout << "========================================\n\n";
 
 
@@ -856,24 +931,23 @@ void createModSymlink()
     char confirmation;
 
 
-    std::cout << "\n========================================\n";
-    std::cout << "          FINAL CONFIRMATION\n";
+    std::cout << "\n========================================\n\n";
+    std::cout << getText("FINAL_CONFIRMATION_TITLE") << "\n\n";
     std::cout << "========================================\n\n";
 
-    std::cout << "A 'Symlink' will be created:\n";
-    std::cout << "Se va a crear un 'Symlink':\n\n";
+    std::cout << getText("FINAL_CONFIRMATION") << "\n\n";
 
     std::cout << "MOD:\n";
     std::cout << modName << "\n\n";
 
-    std::cout << "FROM:\n";
+    std::cout << getText("FROM") << "\n";
     std::cout << source.string() << "\n\n";
 
-    std::cout << "TO:\n";
+    std::cout << getText("TO") << "\n";
     std::cout << finalDestination.string() << "\n\n";
 
-    std::cout << "[Y] Yes\n";
-    std::cout << "[N] No\n\n";
+    std::cout << "[Y] " << getText("YES") << "\n";
+    std::cout << "[N] " << getText("NO") << "\n\n";
 
     std::cout << "Continue? ";
     std::cin >> confirmation;
@@ -902,8 +976,7 @@ void createModSymlink()
     // ========================================
 
     std::cout << "\nConfirmed.\n";
-    std::cout << "Creating Symlink...\n";
-    std::cout << "Creando Symlink...\n\n";
+    std::cout << "Creating Symlink...\n\n";
 
 
     if (createSymlink(
@@ -911,10 +984,10 @@ void createModSymlink()
         finalDestination))
     {
         std::cout << "\n========================================\n";
-        std::cout << "              RESULT\n";
+        std::cout << "\n" << getText("RESULT") << "\n\n";
         std::cout << "========================================\n\n";
 
-        std::cout << "[OK] Symlink created successfully! \n\n";
+        std::cout << "[OK]" << getText("SYMLINK_OK") << "\n\n";
 
         std::cout << "Mod:\n";
         std::cout << modName << "\n\n";
@@ -925,9 +998,9 @@ void createModSymlink()
         std::cout << "Destination:\n";
         std::cout << finalDestination.string() << "\n\n\n";
 
-        std::cout << "\n========================================\n";
-        std::cout << "              MISSION PASSED!\n";
-        std::cout << "                   RESPECT+\n";
+        std::cout << "\n========================================\n\n";
+        std::cout << getText("MISSION_PASSED") << "\n";
+        std::cout << getText("RESPECT_PLUS") << "\n\n";
         std::cout << "========================================\n\n\n";
     }
     else
@@ -936,12 +1009,7 @@ void createModSymlink()
         std::cout << "              ERROR\n";
         std::cout << "========================================\n\n";
 
-        std::cout << "Failed to create the 'Mod Symlink'.\n";
-        std::cout << "No se pudo crear el 'Mod Symlink'.\n\n\n";
-
-        std::cout << "\n========================================\n";
-        std::cout << "              MISSION FAILED!\n";
-        std::cout << "========================================\n\n\n";
+        std::cout << "Failed to create the mod Symlink.\n";
     }
 
 
@@ -962,6 +1030,87 @@ void createModSymlink()
 
 int main()
 {
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+
+    int languageOption;
+
+    while (true)
+    {
+        std::cout << "========================================\n";
+        std::cout << "              LANGUAGE\n";
+        std::cout << "========================================\n\n";
+
+        std::cout << "[1] English\n";
+        std::cout << "[2] Español\n";
+        std::cout << "[3] Portuguese\n\n";
+
+        std::cout << "Select an option: ";
+        std::cin >> languageOption;
+
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+
+            std::cin.ignore(
+                std::numeric_limits<std::streamsize>::max(),
+                '\n'
+            );
+
+            std::cout << "\nInvalid option.\n";
+            std::cout << "Press ENTER to continue...";
+
+            std::cin.get();
+            std::cin.get();
+
+            clearScreen();
+            continue;
+        }
+
+        if (languageOption == 1)
+        {
+            if (!loadLanguage("languages/English.ini"))
+            {
+                std::cout << "\nERROR: Could not load English.ini\n";
+                return 1;
+            }
+
+            break;
+        }
+        else if (languageOption == 2)
+        {
+            if (!loadLanguage("languages/Spanish.ini"))
+            {
+                std::cout << "\nERROR: Could not load Spanish.ini\n";
+                return 1;
+            }
+
+            break;
+        }
+        else if (languageOption == 3)
+        {
+            if (!loadLanguage("languages/portuguese.ini"))
+            {
+                std::cout << "\nERROR: Could not load portuguese.ini\n";
+                return 1;
+            }
+            break;
+        }
+        else
+        {
+            std::cout << "\nInvalid option.\n";
+
+            std::cin.ignore(
+                std::numeric_limits<std::streamsize>::max(),
+                '\n'
+            );
+
+            std::cin.get();
+
+            clearScreen();
+        }
+    }
+
     int option;
 
 
@@ -1052,21 +1201,17 @@ int main()
     {
         clearScreen();
 
-        std::cout << "========================================\n\n";
+        std::cout << "========================================\n";
         std::cout << "          GTA SYMLINK GENERATOR\n";
-        std::cout << "          Here we go again...\n\n";
         std::cout << "========================================\n\n";
 
-        std::cout << "ENG: Are you going to create a ''GTA Symlink'' or a ''Symlink mod'' (For heavy mods)? \n";
-        std::cout << "ESP: Vas a crear un ''GTA Symlink'' o un ''Symlink mod'' (Para mods pesados)? \n\n\n";
+        std::cout << "[1] " << getText("GTA_III") << "\n";
+        std::cout << "[2] " << getText("GTA_VICE_CITY") << "\n";
+        std::cout << "[3] " << getText("GTA_SAN_ANDREAS") << "\n";
+        std::cout << "[4] " << getText("CREATE_MOD_SYMLINK") << "\n";
+        std::cout << "[5] " << getText("EXIT") << "\n\n";
 
-        std::cout << "[1] GTA III\n";
-        std::cout << "[2] GTA Vice City\n";
-        std::cout << "[3] GTA San Andreas\n";
-        std::cout << "[4] Create Mod Symlink\n";
-        std::cout << "[5] Exit\n\n";
-
-        std::cout << "Select an option: ";
+        std::cout << getText("SELECT_OPTION");
         std::cin >> option;
 
 
@@ -1108,10 +1253,10 @@ int main()
                 std::cout << "                GTA III\n";
                 std::cout << "========================================\n\n";
 
-                std::cout << "[1] Create Symlink\n";
-                std::cout << "[2] Back to Main Menu\n\n";
+                std::cout << "[1] " << getText("CREATE_SYMLINK") << "\n";
+                std::cout << "[2] " << getText("RETURN_TO_MAIN_MENU") << "\n\n";
 
-                std::cout << "Select an option: ";
+                std::cout << getText("SELECT_OPTION");
                 std::cin >> gameOption;
 
 
@@ -1180,8 +1325,8 @@ int main()
                 std::cout << "             GTA VICE CITY\n";
                 std::cout << "========================================\n\n";
 
-                std::cout << "[1] Create Symlink\n";
-                std::cout << "[2] Back to Main Menu\n\n";
+                std::cout << "[1] " << getText("CREATE_SYMLINK") << "\n";
+                std::cout << "[2] " << getText("RETURN_TO_MAIN_MENU") << "\n\n";
 
                 std::cout << "Select an option: ";
                 std::cin >> gameOption;
@@ -1252,8 +1397,8 @@ int main()
                 std::cout << "           GTA SAN ANDREAS\n";
                 std::cout << "========================================\n\n";
 
-                std::cout << "[1] Create Symlink\n";
-                std::cout << "[2] Back to Main Menu\n\n";
+                std::cout << "[1] " << getText("CREATE_SYMLINK") << "\n";
+                std::cout << "[2] " << getText("RETURN_TO_MAIN_MENU") << "\n\n";
 
                 std::cout << "Select an option: ";
                 std::cin >> gameOption;
@@ -1324,8 +1469,8 @@ int main()
                 std::cout << "             MOD SYMLINK\n";
                 std::cout << "========================================\n\n";
 
-                std::cout << "[1] Create Symlink\n";
-                std::cout << "[2] Back to Main Menu\n\n";
+                std::cout << "[1] " << getText("CREATE_SYMLINK") << "\n";
+                std::cout << "[2] " << getText("RETURN_TO_MAIN_MENU") << "\n\n";
 
                 std::cout << "Select an option: ";
                 std::cin >> modOption;
@@ -1411,4 +1556,5 @@ int main()
 // Developed in: Visual Studio 2026
 // Copyright (c) Microsoft Corporation.
 // "Grand Theft Auto III", "Grand Theft Auto: Vice City" and "Grand Theft Auto: San Andreas"
-// are property of ©Rockstar Games and ©Rockstar North.
+// are the property of ©Rockstar Games and ©Rockstar North
+//
