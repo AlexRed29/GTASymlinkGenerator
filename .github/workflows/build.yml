@@ -23,5 +23,5 @@ jobs:
       - name: Upload executable
         uses: actions/upload-artifact@v4
         with:
-          name: GTA-Symlink-Generator
+          name: GTASymlinkGenerator
           path: "Release/GTASymlinkGenerator.exe"
