@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GTASymlinkGenerator.cpp">
+    <ClCompile Include="GTA Symlink Generator.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -25,7 +25,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="GTASymlinkGenerator.rc">
+    <ResourceCompile Include="GTA Symlink Generator.rc">
       <Filter>Archivos de recursos</Filter>
     </ResourceCompile>
   </ItemGroup>
@@ -33,5 +33,16 @@
     <Image Include="GTA-Symlink-icon-x256.ico">
       <Filter>Archivos de recursos</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Languages\english.ini">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="Languages\portuguese.ini">
+      <Filter>Archivos de recursos</Filter>
+    </None>
+    <None Include="Languages\spanish.ini">
+      <Filter>Archivos de recursos</Filter>
+    </None>
   </ItemGroup>
 </Project>
