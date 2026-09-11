@@ -139,7 +139,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GTA Symlink Generator.cpp" />
+    <ClCompile Include="Src\GTA Symlink Generator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
