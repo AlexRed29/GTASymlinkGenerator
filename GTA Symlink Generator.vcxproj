@@ -145,10 +145,10 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="GTA Symlink Generator.rc" />
+    <ResourceCompile Include="src\GTA Symlink Generator.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="GTA-Symlink-icon-x256.ico" />
+    <Image Include="Assets\GTA-Symlink-icon-x256.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Languages\english.ini" />
