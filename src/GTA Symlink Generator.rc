@@ -1,4 +1,4 @@
-﻿// Microsoft Visual C++ generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -51,42 +51,12 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON1               ICON                    "assets\GTA-Symlink-icon-x256.ico"
+IDI_ICON1               ICON                    "GTA-Symlink-icon-x256.ico"
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
 
-// INFO
-VS_VERSION_INFO VERSIONINFO
-FILEVERSION 2, 0, 0, 0
-PRODUCTVERSION 2, 0, 0, 0
-FILEFLAGSMASK 0x3fL
-#ifdef _DEBUG
-FILEFLAGS 0x1L
-#else
-FILEFLAGS 0x0L
-#endif
-FILEOS 0x40004L
-FILETYPE 0x1L
-FILESUBTYPE 0x0L
-BEGIN
-BLOCK "StringFileInfo"
-BEGIN
-BLOCK "040904B0"
-BEGIN
-VALUE "CompanyName", "AlexRed29X"
-VALUE "FileDescription", "GTA Symlink Generator"
-VALUE "FileVersion", "2.0.0.0"
-VALUE "InternalName", "GTA Symlink Generator"
-VALUE "OriginalFilename", "GTA Symlink Generator.exe"
-VALUE "ProductName", "GTA Symlink Generator"
-VALUE "ProductVersion", "2.0.0.0"
-VALUE "LegalCopyright", "Copyright (C) 2026 AlexRed29X"
-END
-END
-
-BLOCK "VarFileInfo"
-BEGIN
-VALUE "Translation", 0x0409, 1200
-END
-END
+ENGLISH_INI RCDATA "English.ini"
+SPANISH_INI RCDATA "Spanish.ini"
+PORTUGUESE_INI RCDATA "portuguese.ini"
 
 #endif    // Español (México) resources
 /////////////////////////////////////////////////////////////////////////////
