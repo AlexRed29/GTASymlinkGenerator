@@ -1,11 +1,11 @@
 //{{NO_DEPENDENCIES}}
 // Archivo de inclusión generado de Microsoft Visual C++.
-// Usado por GTASymlinkGenerator.rc
+// Usado por GTA Symlink Generator.rc
 //
-#define IDI_ICON1                       101
-#define ENGLISH_INI    102
-#define SPANISH_INI    103
-#define PORTUGUESE_INI 104
+#define IDI_ICON1       101
+#define ENGLISH_INI     102
+#define SPANISH_INI     103
+#define PORTUGUESE_INI  104
 
 // Next default values for new objects
 // 
