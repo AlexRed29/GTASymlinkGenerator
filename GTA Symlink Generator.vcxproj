@@ -22,7 +22,7 @@
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{5f09a6ac-5689-4608-a531-7b76fc80e85a}</ProjectGuid>
-    <RootNamespace>GTASymlinkGenerator</RootNamespace>
+    <RootNamespace>GTA Symlink Generator</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,13 +139,13 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GTASymlinkGenerator.cpp" />
+    <ClCompile Include="GTA Symlink Generator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="GTASymlinkGenerator.rc" />
+    <ResourceCompile Include="GTA Symlink Generator.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="GTA-Symlink-icon-x256.ico" />
