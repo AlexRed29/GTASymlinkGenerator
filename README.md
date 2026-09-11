@@ -87,14 +87,23 @@ This means saving disk space! <br>
 Select whether we will create a ***"GTA Symlink"*** or a ***"Mod Symlink"*** for a heavy mod **(Ex: RoSA Evolved)**. <br>
 
 ### CREATING A "GTA SYMLINK" 
-1. Paste the **SOURCE Path (Original game without mods)**.
-2. Paste the **DESTINATION Path (Where we are going to install our "GTA Symlink")**
-3. Press the corresponding buttons on the keyboard
-4. Perfect! You now have your **GTA "Symlink"**! <br> <br>
+**1. Paste the SOURCE Path (Original game without mods). <br>**
+###### *E.g. "C:\GTA Originales\Grand Theft Auto San Andreas"* <br> <br>
+
+**2. Paste the DESTINATION Path (Where we are going to install our "GTA Symlink")** <br>
+###### *E.g. C:\Games\Grand Theft Auto San Andreas* <br> <br>
+
+4. Press the corresponding buttons on the keyboard
+5. Perfect! You now have your **GTA "Symlink"**! <br> <br>
+
 
 ### CREATING A "MOD SYMLINK"
 1. Paste the **SOURCE Path (Original Mod Folder)**.
+###### *E.g. "C:\Documents\GTA SA Mods\RoSA Project Evolved"* <br> <br>
+
 2. Paste the **DESTINATION Path (Your Modloader folder location")**
+###### *E.g. C:\Games\Grand Theft Auto San Andreas\Modloader* <br> <br>
+
 3. Press the corresponding buttons on the keyboard
 4. Perfect! You now have your **"Mod Symlink"**! <br> <br> <br>
 
