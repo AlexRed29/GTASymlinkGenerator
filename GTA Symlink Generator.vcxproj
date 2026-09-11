@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{5e933f05-7193-4f5b-a55c-599d6104eddd}</ProjectGuid>
+    <ProjectGuid>{5f09a6ac-5689-4608-a531-7b76fc80e85a}</ProjectGuid>
     <RootNamespace>GTASymlinkGenerator</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -95,7 +95,6 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,17 +139,16 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\GTA Symlink Generator.cpp" />
+    <ClCompile Include="GTASymlinkGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\GTA-Symlink-icon-x256.ico" />
-    <Image Include="icon1.ico" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\resource.h" />
+    <ResourceCompile Include="GTASymlinkGenerator.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="src\GTA Symlink Generator.rc" />
+    <Image Include="GTA-Symlink-icon-x256.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
