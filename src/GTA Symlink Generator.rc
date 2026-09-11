@@ -52,11 +52,15 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDI_ICON1               ICON                    "GTA-Symlink-icon-x256.ico"
+
 LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
 
-ENGLISH_INI RCDATA "English.ini"
-SPANISH_INI RCDATA "Spanish.ini"
-PORTUGUESE_INI RCDATA "portuguese.ini"
+ENGLISH_INI RCDATA "languages/English.ini"
+SPANISH_INI RCDATA "languages/Spanish.ini"
+PORTUGUESE_INI RCDATA "languages/portuguese.ini"
+
+
+
 
 #endif    // Español (México) resources
 /////////////////////////////////////////////////////////////////////////////
