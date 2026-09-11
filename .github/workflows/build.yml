@@ -1,4 +1,4 @@
-name: Build GTA Symlink Generator
+name: Build GTASymlinkGenerator
 
 on:
   push:
@@ -38,5 +38,5 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: GTA-Symlink-Generator
-          path: "Release/GTA Symlink Generator.exe"
+          name: GTASymlinkGenerator
+          path: "Release/GTASymlinkGenerator.exe"
