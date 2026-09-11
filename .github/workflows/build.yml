@@ -1,42 +1,27 @@
-name: Build GTASymlinkGenerator
+name: Build GTA Symlink Generator
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout source code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
-      - name: Build Release Win32
-        shell: pwsh
-        run: |
-          msbuild "GTASymlinkGenerator.vcxproj" /p:Configuration=Release /p:Platform=Win32 /v:diagnostic *> msbuild.log
-          if ($LASTEXITCODE -ne 0) {
-            Write-Host "MSBuild failed with exit code $LASTEXITCODE"
-            Get-Content msbuild.log
-            exit $LASTEXITCODE
-          }
-
-      - name: Upload MSBuild log
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: MSBuild-Log
-          path: msbuild.log
+      - name: Build
+        run: msbuild "GTA Symlink Generator.vcxproj" /p:Configuration=Release /p:Platform=Win32
 
       - name: Upload executable
-        if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: GTASymlinkGenerator
-          path: "Release/GTASymlinkGenerator.exe"
+          name: GTA-Symlink-Generator
+          path: "Release/GTA Symlink Generator.exe"
