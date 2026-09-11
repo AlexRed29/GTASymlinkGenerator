@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="GTA Symlink Generator/GTA Symlink Generator.vcxproj" Id="5e933f05-7193-4f5b-a55c-599d6104eddd" />
+  <Project Path="GTASymlinkGenerator.vcxproj" Id="5f09a6ac-5689-4608-a531-7b76fc80e85a" />
 </Solution>
