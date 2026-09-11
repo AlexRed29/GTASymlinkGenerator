@@ -20,7 +20,7 @@ jobs:
       - name: Build Release Win32
         shell: pwsh
         run: |
-          msbuild "GTA Symlink Generator.vcxproj" /p:Configuration=Release /p:Platform=Win32 /v:diagnostic *> msbuild.log
+          msbuild "GTASymlinkGenerator.vcxproj" /p:Configuration=Release /p:Platform=Win32 /v:diagnostic *> msbuild.log
           if ($LASTEXITCODE -ne 0) {
             Write-Host "MSBuild failed with exit code $LASTEXITCODE"
             Get-Content msbuild.log
