@@ -1,6 +1,6 @@
 # GTA Symlink Generator
 ###### Created by: AlexRed29X
-###### Updated to: September 4th 2026
+###### Updated to: September 12th 2026
 
 <img width="720" height="560" alt="GTA-Symlink-Generator-logo" src="https://github.com/user-attachments/assets/3aed5ee0-9a55-49db-94a3-b367a3cc12e2" />
 
@@ -73,6 +73,8 @@ This means saving disk space! <br>
 - Quite simple interface (Windows **CMD**).
 - For security reasons, it asks us if it will be for a **Total Conversion Mod**.
 - Confirmation of required folders and files (***"Anim", "Audio", "Models"***, etc.).
+- File/folder check (If a folder is missing, the "Symlink" will not be created until that folder is created).
+- Multilanguage support (English, Spanish, Portuguese)!
 - Portable (No need to install anything!).
 <br> <br> <br>
 
