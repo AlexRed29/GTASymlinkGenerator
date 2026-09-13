@@ -148,3 +148,17 @@ These mods are known as **"Repack"** or **"Modloader Support"**! <br>
 - GTA Gostown Paradise (Modloader REPACK)
 - GTA Alien City (Modloader Support)
 - GTA Mushroomia (Modloader Support)
+
+<br> <br> 
+
+# Q. MY ANTIVIRUS IS DETECTING “GTASymlinkGenerator.exe” AS A VIRUS!
+**A. NO NEED TO PANIC.** It's a false positive. It's probably being detected this way because it uses the function to create **"Symbolic Links" *(CreateSymbolicLinkW)***. <br>
+
+The program is **OPEN SOURCE**, and anyone can freely view its code (in **"src"** on GitHub) and verify that it contains nothing malicious. <br>
+When you download the program, add it to your antivirus's whitelist. <br>
+
+**VirusTotal Page:** <br>
+*https://www.virustotal.com/gui/file/5e0e822d0c9f760d97599de1b5b87b9320ddefed5e52ac09657577ac97c441a7*
+<br>
+<br>
+<br>
