@@ -1,7 +1,7 @@
 // GTA Symlink Generator.cpp
 // Created by: AlexRed29X
 //
-// Ultima Modificacion: 11 Septiembre 2026
+// Ultima Modificacion: 15 Septiembre 2026
 //
 
 
@@ -35,6 +35,10 @@ bool loadLanguage(const std::string& filename)
         resource = FindResource(nullptr, MAKEINTRESOURCE(SPANISH_INI), RT_RCDATA);
     else if (filename == "languages/portuguese.ini")
         resource = FindResource(nullptr, MAKEINTRESOURCE(PORTUGUESE_INI), RT_RCDATA);
+    else if (filename == "languages/french.ini")
+        resource = FindResource(nullptr, MAKEINTRESOURCE(FRENCH_INI), RT_RCDATA);
+    else if (filename == "languages/german.ini")
+        resource = FindResource(nullptr, MAKEINTRESOURCE(GERMAN_INI), RT_RCDATA);
 
     if (!resource)
         return false;
@@ -123,7 +127,7 @@ bool createSymlink(
 
     if (!isDirectory && !isFile)
     {
-        std::cout << "\nERROR: The source is not a valid file or folder.\n";
+        std::cout << getText("ERROR_SOURCE") << "\n";
         return false;
     }
 
@@ -143,9 +147,10 @@ bool createSymlink(
 
     DWORD error = GetLastError();
 
-    std::cout << "\nERROR: Failed to create the Symlink.\n";
-    std::cout << "Windows error code: "
-        << error << "\n";
+    std::cout << getText("ERROR_CREATE_SYMLINK") << "\n";
+    std::cout << "Windows error code: " << error << "\n\n\n";
+
+    std::cout << getText("FIX_1314") << "\n";
 
     return false;
 }
@@ -163,7 +168,7 @@ bool copyElement(
     {
         if (!std::filesystem::exists(source))
         {
-            std::cout << "\nERROR: Source element does not exist:\n";
+            std::cout << getText("ERROR_SOURCE_ELEMENT") << "\n";
             std::cout << source.string() << "\n";
 
             return false;
@@ -171,7 +176,7 @@ bool copyElement(
 
         if (std::filesystem::exists(destination))
         {
-            std::cout << "\nERROR: Destination already exists:\n";
+            std::cout << getText("ERROR_DESTINATION_EXIST") << "\n";
             std::cout << destination.string() << "\n";
 
             return false;
@@ -194,7 +199,8 @@ bool copyElement(
         }
         else
         {
-            std::cout << "\nERROR: Source is not a file or folder.\n";
+            std::cout << "\n";
+            std::cout << getText("ERROR_SOURCE_NOT") << "\n";
             std::cout << source.string() << "\n";
 
             return false;
@@ -204,7 +210,7 @@ bool copyElement(
     }
     catch (const std::filesystem::filesystem_error& error)
     {
-        std::cout << "\nERROR while copying the element.\n";
+        std::cout << getText("ERROR_COPYING") << "\n";
         std::cout << error.what() << "\n";
 
         return false;
@@ -242,7 +248,7 @@ void createGameSymlink(
     std::cout << "[Y] " << getText("YES") << "\n";
     std::cout << "[N] " << getText("NO") << "\n\n";
 
-    std::cout << "Select an option: ";
+    std::cout << getText("SELECT_OPTION") << "\n";
     std::cin >> totalConversion;
 
 
@@ -267,9 +273,7 @@ void createGameSymlink(
 
         std::cout << getText("BAD_SYMLINK") << "\n\n";
 
-
-
-        std::cout << "Press ENTER to return...";
+        std::cout << getText("RETURN_ENTER") << "\n";
 
         std::cin.ignore(
             std::numeric_limits<std::streamsize>::max(),
@@ -286,10 +290,10 @@ void createGameSymlink(
         totalConversion != 'n')
     {
 
-        std::cout << "\nInvalid option.\n";
+        std::cout << getText("INVALID_OPTION") << "\n";
         std::cout << "Please select N or Y.\n\n";
 
-        std::cout << "Press ENTER to continue...";
+        std::cout << getText("PRESS_ENTER") << "\n";
 
         std::cin.ignore(
             std::numeric_limits<std::streamsize>::max(),
@@ -345,7 +349,7 @@ void createGameSymlink(
     {
         std::cout << "Source: ERROR - Path does not exist.\n";
 
-        std::cout << "\nPress ENTER to continue...";
+        std::cout << getText("PRESS_ENTER") << "\n";
         std::cin.get();
 
         return;
@@ -356,7 +360,7 @@ void createGameSymlink(
     {
         std::cout << "Source: ERROR - Path is not a folder.\n";
 
-        std::cout << "\nPress ENTER to continue...";
+        std::cout << getText("PRESS_ENTER") << "\n";
         std::cin.get();
 
         return;
@@ -372,7 +376,7 @@ void createGameSymlink(
 
         std::cout << "You must create the destination folder first.\n";
 
-        std::cout << "\nPress ENTER to continue...";
+        std::cout << getText("PRESS_ENTER") << "\n";
         std::cin.get();
 
         return;
@@ -383,7 +387,7 @@ void createGameSymlink(
     {
         std::cout << "Destination: ERROR - Path is not a folder.\n";
 
-        std::cout << "\nPress ENTER to continue...";
+        std::cout << getText("PRESS_ENTER") << "\n";
         std::cin.get();
 
         return;
@@ -452,12 +456,11 @@ void createGameSymlink(
     if (!allElementsExist)
     {
         std::cout << "\n\n========================================\n";
-        std::cout << "              WARNING\n";
+        std::cout << getText("WARNING") << "\n";
         std::cout << "\n========================================\n\n";
 
-        std::cout << "Required files or folders are missing.\n\n";
-
-        std::cout << "If they are ''not-so-important'' folders (like 'MP3' for GTA III/Vice City), create them manually.\n\n";
+        std::cout << getText("REQUIRED_FILES") << "\n";
+                std::cout << getText("CREATE_FOLDERS") << "\n\n";
 
         std::cout << "The "
             << gameName
@@ -465,14 +468,15 @@ void createGameSymlink(
 
         std::cout << "Operation cancelled.\n";
 
-        std::cout << "\nPress ENTER to continue...";
+        std::cout << getText("PRESS_ENTER") << "\n";
         std::cin.get();
 
         return;
     }
 
 
-    std::cout << "\nAll required elements were found.\n";
+    std::cout << "\n";
+    std::cout << getText("REQUIRED_FOUND") << "\n";
 
 
     // ========================================
@@ -534,21 +538,22 @@ void createGameSymlink(
     if (!allDestinationsAvailable)
     {
         std::cout << "\n========================================\n";
-        std::cout << "              WARNING\n";
+        std::cout << getText("WARNING") << "\n";
         std::cout << "\n========================================\n\n";
 
-        std::cout << "One or more destinations already exist.\n\n";
+        std::cout << getText("DESTINATION_EXIST1") << "\n\n";
+        
 
-        std::cout << "Operation cancelled for safety.\n";
+        std::cout << getText("DESTINATION_EXIST2") << "\n";
 
-        std::cout << "\nPress ENTER to continue...";
+        std::cout << getText("PRESS_ENTER") << "\n";
         std::cin.get();
 
         return;
     }
 
-
-    std::cout << "\nAll destinations are available.\n";
+    std::cout << "\n";
+    std::cout << getText("ALL_AVAILABLE") << "\n";
 
 
     // ========================================
@@ -562,11 +567,11 @@ void createGameSymlink(
     std::cout << getText("FINAL_CONFIRMATION") << "\n";
     std::cout << "\n========================================\n\n";
 
-    std::cout << "Symlinks to create: "
+    std::cout << getText("SYM_FILE")
         << symlinks.size()
         << "\n";
 
-    std::cout << "Elements to copy: "
+    std::cout << getText("COPY_FILE")
         << copies.size()
         << "\n\n";
 
@@ -586,9 +591,9 @@ void createGameSymlink(
     if (confirmation != 'Y' &&
         confirmation != 'y')
     {
-        std::cout << "\nOperation cancelled.\n";
+        std::cout << getText("CANCELLED") << "\n";
 
-        std::cout << "\nPress ENTER to continue...";
+        std::cout << getText("PRESS_ENTER") << "\n";
 
         std::cin.ignore(
             std::numeric_limits<std::streamsize>::max(),
@@ -646,9 +651,10 @@ void createGameSymlink(
 
     if (symlinksFailed > 0)
     {
-        std::cout << "\nCopy operation will not continue.\n";
+        std::cout << getText("\n");
+        std::cout << getText("COPY_NOT") << "\n";
 
-        std::cout << "\nPress ENTER to continue...";
+        std::cout << getText("PRESS_ENTER") << "\n";
 
         std::cin.ignore(
             std::numeric_limits<std::streamsize>::max(),
@@ -705,13 +711,13 @@ void createGameSymlink(
     std::cout << "\n" << getText("RESULT") << "\n";
     std::cout << "\n========================================\n\n";
 
-    std::cout << "Symlinks created: "
+    std::cout << "\n" << getText("SYM_OK")
         << symlinksCreated
         << " / "
         << symlinks.size()
         << "\n";
 
-    std::cout << "Elements copied: "
+    std::cout << "\n" << getText("COPY_OK")
         << elementsCopied
         << " / "
         << copies.size()
@@ -727,7 +733,7 @@ void createGameSymlink(
     std::cout << "========================================\n\n\n";
 
 
-    std::cout << "\nPress ENTER to continue...";
+    std::cout << getText("PRESS_ENTER") << "\n";
 
     std::cin.ignore(
         std::numeric_limits<std::streamsize>::max(),
@@ -799,9 +805,9 @@ void createModSymlink()
 
     if (!std::filesystem::exists(source))
     {
-        std::cout << "Source: ERROR - Path does not exist.\n";
+        std::cout << "\n" << getText("ERROR_NOTEXIST") << "\n";
 
-        std::cout << "\nPress ENTER to continue...";
+        std::cout << getText("PRESS_ENTER") << "\n";
         std::cin.get();
 
         return;
@@ -810,9 +816,9 @@ void createModSymlink()
 
     if (!std::filesystem::is_directory(source))
     {
-        std::cout << "Source: ERROR - Path is not a folder.\n";
+        std::cout << "\n" << getText("ERROR_NOTFOLDER") << "\n";
 
-        std::cout << "\nPress ENTER to continue...";
+        std::cout << getText("PRESS_ENTER") << "\n";
         std::cin.get();
 
         return;
@@ -824,11 +830,10 @@ void createModSymlink()
 
     if (!std::filesystem::exists(modloader))
     {
-        std::cout << "Modloader: ERROR - Path does not exist.\n\n";
+        std::cout << "\n" << getText("ERROR_MODLOADER1") << "\n";
+        std::cout << "\n" << getText("ERROR_MODLOADER2") << "\n";
 
-        std::cout << "You must create the Modloader folder first.\n";
-
-        std::cout << "\nPress ENTER to continue...";
+        std::cout << getText("PRESS_ENTER") << "\n";
         std::cin.get();
 
         return;
@@ -837,9 +842,9 @@ void createModSymlink()
 
     if (!std::filesystem::is_directory(modloader))
     {
-        std::cout << "Modloader: ERROR - Path is not a folder.\n";
+        std::cout << "\n" << getText("ERROR_MODLOADER3") << "\n\n";
 
-        std::cout << "\nPress ENTER to continue...";
+        std::cout << getText("PRESS_ENTER") << "\n";
         std::cin.get();
 
         return;
@@ -861,7 +866,7 @@ void createModSymlink()
     {
         std::cout << "\nERROR - Could not determine the mod name.\n";
 
-        std::cout << "\nPress ENTER to continue...";
+        std::cout << getText("PRESS_ENTER") << "\n";
         std::cin.get();
 
         return;
@@ -886,9 +891,6 @@ void createModSymlink()
     std::cout << getText("MOD_SOURCE") << sourceText << "\n";
     std::cout << source.string() << "\n\n";
 
-    std::cout << "Modloader:\n";
-    std::cout << modloader.string() << "\n\n";
-
     std::cout << "Final destination:\n";
     std::cout << finalDestination.string() << "\n";
 
@@ -911,7 +913,7 @@ void createModSymlink()
 
         std::cout << "Operation cancelled for safety.\n";
 
-        std::cout << "\nPress ENTER to continue...";
+        std::cout << getText("PRESS_ENTER") << "\n";
 
         std::cin.get();
 
@@ -958,7 +960,7 @@ void createModSymlink()
     {
         std::cout << "\nOperation cancelled.\n";
 
-        std::cout << "\nPress ENTER to continue...";
+        std::cout << getText("PRESS_ENTER") << "\n";
 
         std::cin.ignore(
             std::numeric_limits<std::streamsize>::max(),
@@ -1013,7 +1015,7 @@ void createModSymlink()
     }
 
 
-    std::cout << "\nPress ENTER to continue...";
+    std::cout << getText("PRESS_ENTER") << "\n";
 
     std::cin.ignore(
         std::numeric_limits<std::streamsize>::max(),
@@ -1043,9 +1045,11 @@ int main()
 
         std::cout << "[1] English\n";
         std::cout << "[2] Español\n";
-        std::cout << "[3] Portuguese\n\n";
+        std::cout << "[3] Portuguese\n";
+        std::cout << "[4] Français\n";
+        std::cout << "[5] Deutsch\n\n";
 
-        std::cout << "Select an option: ";
+        std::cout << "Select an option:\n";
         std::cin >> languageOption;
 
         if (std::cin.fail())
@@ -1057,8 +1061,8 @@ int main()
                 '\n'
             );
 
-            std::cout << "\nInvalid option.\n";
-            std::cout << "Press ENTER to continue...";
+            std::cout << getText("INVALID_OPTION") << "\n";
+            std::cout << getText("PRESS_ENTER") << "\n";
 
             std::cin.get();
             std::cin.get();
@@ -1096,9 +1100,27 @@ int main()
             }
             break;
         }
+        else if (languageOption == 4)
+        {
+            if (!loadLanguage("languages/french.ini"))
+            {
+                std::cout << "\nERROR: Could not load french.ini\n";
+                return 1;
+            }
+            break;
+        }
+        else if (languageOption == 5)
+        {
+            if (!loadLanguage("languages/german.ini"))
+            {
+                std::cout << "\nERROR: Could not load german.ini\n";
+                return 1;
+            }
+            break;
+        }
         else
         {
-            std::cout << "\nInvalid option.\n";
+            std::cout << getText("INVALID_OPTION") << "\n";
 
             std::cin.ignore(
                 std::numeric_limits<std::streamsize>::max(),
@@ -1224,8 +1246,8 @@ int main()
                 '\n'
             );
 
-            std::cout << "\nInvalid option.\n";
-            std::cout << "Press ENTER to continue...";
+            std::cout << getText("INVALID_OPTION") << "\n";
+            std::cout << getText("PRESS_ENTER") << "\n";
 
             std::cin.get();
             std::cin.get();
@@ -1269,8 +1291,8 @@ int main()
                         '\n'
                     );
 
-                    std::cout << "\nInvalid option.\n";
-                    std::cout << "Press ENTER to continue...";
+                    std::cout << getText("INVALID_OPTION") << "\n";
+                    std::cout << getText("PRESS_ENTER") << "\n";
 
                     std::cin.get();
 
@@ -1292,9 +1314,8 @@ int main()
                 }
                 else
                 {
-                    std::cout << "\nInvalid option.\n";
-
-                    std::cout << "Press ENTER to continue...";
+                    std::cout << getText("INVALID_OPTION") << "\n";
+                    std::cout << getText("PRESS_ENTER") << "\n";
 
                     std::cin.ignore(
                         std::numeric_limits<std::streamsize>::max(),
@@ -1328,7 +1349,7 @@ int main()
                 std::cout << "[1] " << getText("CREATE_SYMLINK") << "\n";
                 std::cout << "[2] " << getText("RETURN_TO_MAIN_MENU") << "\n\n";
 
-                std::cout << "Select an option: ";
+                std::cout << getText("SELECT_OPTION") << "\n";
                 std::cin >> gameOption;
 
 
@@ -1341,8 +1362,8 @@ int main()
                         '\n'
                     );
 
-                    std::cout << "\nInvalid option.\n";
-                    std::cout << "Press ENTER to continue...";
+                    std::cout << getText("INVALID_OPTION") << "\n";
+                    std::cout << getText("PRESS_ENTER") << "\n";
 
                     std::cin.get();
 
@@ -1364,9 +1385,9 @@ int main()
                 }
                 else
                 {
-                    std::cout << "\nInvalid option.\n";
+                    std::cout << getText("INVALID_OPTION") << "\n";
 
-                    std::cout << "Press ENTER to continue...";
+                    std::cout << getText("PRESS_ENTER") << "\n";
 
                     std::cin.ignore(
                         std::numeric_limits<std::streamsize>::max(),
@@ -1400,7 +1421,7 @@ int main()
                 std::cout << "[1] " << getText("CREATE_SYMLINK") << "\n";
                 std::cout << "[2] " << getText("RETURN_TO_MAIN_MENU") << "\n\n";
 
-                std::cout << "Select an option: ";
+                std::cout << getText("SELECT_OPTION") << "\n";
                 std::cin >> gameOption;
 
 
@@ -1413,8 +1434,8 @@ int main()
                         '\n'
                     );
 
-                    std::cout << "\nInvalid option.\n";
-                    std::cout << "Press ENTER to continue...";
+                    std::cout << getText("INVALID_OPTION") << "\n";
+                    std::cout << getText("PRESS_ENTER") << "\n";
 
                     std::cin.get();
 
@@ -1436,9 +1457,8 @@ int main()
                 }
                 else
                 {
-                    std::cout << "\nInvalid option.\n";
-
-                    std::cout << "Press ENTER to continue...";
+                    std::cout << getText("INVALID_OPTION") << "\n";
+                    std::cout << getText("PRESS_ENTER") << "\n";
 
                     std::cin.ignore(
                         std::numeric_limits<std::streamsize>::max(),
@@ -1472,7 +1492,7 @@ int main()
                 std::cout << "[1] " << getText("CREATE_SYMLINK") << "\n";
                 std::cout << "[2] " << getText("RETURN_TO_MAIN_MENU") << "\n\n";
 
-                std::cout << "Select an option: ";
+                std::cout << getText("SELECT_OPTION") << "\n";
                 std::cin >> modOption;
 
 
@@ -1485,8 +1505,8 @@ int main()
                         '\n'
                     );
 
-                    std::cout << "\nInvalid option.\n";
-                    std::cout << "Press ENTER to continue...";
+                    std::cout << getText("INVALID_OPTION") << "\n";
+                    std::cout << getText("PRESS_ENTER") << "\n";
 
                     std::cin.get();
 
@@ -1504,9 +1524,8 @@ int main()
                 }
                 else
                 {
-                    std::cout << "\nInvalid option.\n";
-
-                    std::cout << "Press ENTER to continue...";
+                    std::cout << getText("INVALID_OPTION") << "\n";
+                    std::cout << getText("PRESS_ENTER") << "\n";
 
                     std::cin.ignore(
                         std::numeric_limits<std::streamsize>::max(),
@@ -1534,9 +1553,8 @@ int main()
 
         default:
 
-            std::cout << "\nInvalid option.\n";
-
-            std::cout << "Press ENTER to continue...";
+            std::cout << getText("INVALID_OPTION") << "\n";
+            std::cout << getText("PRESS_ENTER") << "\n";
 
             std::cin.ignore(
                 std::numeric_limits<std::streamsize>::max(),
