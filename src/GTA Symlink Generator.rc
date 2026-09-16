@@ -55,11 +55,47 @@ IDI_ICON1 ICON "GTA-Symlink-icon-x256.ico"
 
 LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
 
-ENGLISH_INI RCDATA "languages/English.ini"
-SPANISH_INI RCDATA "languages/Spanish.ini"
-PORTUGUESE_INI RCDATA "languages/portuguese.ini"
+ENGLISH_INI             RCDATA                  "languages/English.ini"
+SPANISH_INI             RCDATA                  "languages/Spanish.ini"
+PORTUGUESE_INI          RCDATA                  "languages/portuguese.ini"
+FRENCH_INI              RCDATA                  "languages/french.ini"
+GERMAN_INI              RCDATA                  "languages/german.ini"
 
+// Version
+//
 
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,0,1,0
+ PRODUCTVERSION 2,0,1,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080a04b0"
+        BEGIN
+            VALUE "CompanyName", "AlexRed29"
+            VALUE "FileDescription", "GTA Symlink Generator"
+            VALUE "FileVersion", "2.0.2.0"
+            VALUE "InternalName", "GTASymlinkGenerator.exe"
+            VALUE "LegalCopyright", "Copyright (C) 2026 AlexRed29"
+            VALUE "OriginalFilename", "GTASymlinkGenerator.exe"
+            VALUE "ProductName", "GTA Symlink Generator"
+            VALUE "ProductVersion", "2.0.2.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x80a, 1200
+    END
+END
 
 
 #endif    // Español (México) resources
