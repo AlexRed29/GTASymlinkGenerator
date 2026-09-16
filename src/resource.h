@@ -6,6 +6,8 @@
 #define ENGLISH_INI     102
 #define SPANISH_INI     103
 #define PORTUGUESE_INI  104
+#define FRENCH_INI      105
+#define GERMAN_INI      106
 
 // Next default values for new objects
 // 
