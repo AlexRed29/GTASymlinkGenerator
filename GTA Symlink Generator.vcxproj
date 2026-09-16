@@ -154,6 +154,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Languages\english.ini" />
+    <None Include="Languages\french.ini" />
+    <None Include="Languages\german.ini" />
     <None Include="Languages\portuguese.ini" />
     <None Include="Languages\spanish.ini" />
   </ItemGroup>
